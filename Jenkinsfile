@@ -114,15 +114,15 @@ pipeline {
                 sh "sleep 60"    
                 sh "ansible-playbook -i ./ansible/inventory/dev_stack_dynamic_inventory_aws_ec2.yaml ./ansible/playbooks/dev-petclinic-deploy.yaml"
                 echo "Test Application"
-                sh "sleep 100"  
 
+                
             }
         }     
-
  }
 
     post {
         always {
+            sh "sleep 600"
             echo 'Deleting all local images'
             sh 'docker image prune -af'
             echo 'Delete the Image Repository on ECR'
